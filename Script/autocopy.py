@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from subprocess import PIPE,Popen
-import sys
+import sys,shutil,os
 
 shield_path = [
   "C:\\Windows\\"
@@ -44,9 +44,13 @@ def search_dependeces(msys2_target : str):
         search_dependeces(processed[1]) # 递归搜索
 
 def copy_dep(target_path:str):
+  origin_files = os.listdir(target_path)
+
   for i in dependeces:
-    with Popen(["xcopy",i[1],target_path]) :
-      pass
+    if i[0] in origin_files:
+      continue
+
+    shutil.copy(i[1],target_path)
 
 
 if __name__ == "__main__":
@@ -54,5 +58,9 @@ if __name__ == "__main__":
     print("[Error] 参数过少")
     exit
 
+  print("依赖的dll：")
+
   search_dependeces(sys.argv[1])
   copy_dep(sys.argv[2])
+
+  print("拷贝到：",sys.argv[2])
