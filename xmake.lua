@@ -9,10 +9,10 @@ target("CardinalManager")
   add_includedirs("src")
   add_packages("libadwaita-1")
 
-  after_build(function (target)
+  after_install(function (target)
     if is_plat("windows") then
-      local outdata, errdata = os.iorun("python \"$(projectdir)/Script/autocopy.py\" $(projectdir)/%s $(projectdir)/%s",target:targetfile(),target:targetdir())
-      print(outdata)
+      os.exec("python \"$(projectdir)/Script/autocopy.py\" $(projectdir)/%s $(projectdir)/%s/bin",
+              target:targetfile(),target:installdir())
     end
   end)
 
