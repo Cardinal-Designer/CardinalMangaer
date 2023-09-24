@@ -17,7 +17,11 @@ CardinalManager 在开发之初就使用 xmake + clang (ucrt) 的方案，使用
 安装所有的依赖：
 
 ```shell
-pacman -Sy mingw-w64-ucrt-x86_64-libadwaita mingw-w64-ucrt-x86_64-clang mingw-w64-ucrt-x86_64-clang-tools-extra mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-ntldd
+pacman -Sy mingw-w64-ucrt-x86_64-libadwaita \
+                    mingw-w64-ucrt-x86_64-clang \
+                    mingw-w64-ucrt-x86_64-clang-tools-extra \
+                    mingw-w64-ucrt-x86_64-toolchain \
+                    mingw-w64-ucrt-x86_64-ntldd
 ```
 
 觉得速度慢可以考虑换个源，我自己用的是 tuna 的源，更换的教程也在 tuna 的文档中包含了，自己找一下就行。
