@@ -2,3 +2,4 @@ CardinalMangaer.code-workspace
 /build/
 /.xmake/
 /.vscode/
+/dist/
