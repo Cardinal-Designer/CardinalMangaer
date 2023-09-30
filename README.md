@@ -4,7 +4,7 @@
 
 # 关于编译
 
-CardinalManager 在开发之初就使用 xmake + clang (ucrt) 的方案，使用 gcc 编译也许会成功，但是可能产生不可预知的 bug。为了节省您的精力，请在参与开发或自行编译的时候都以官方操作为准。
+CardinalManager 在开发之初就使用 xmake + clang 的方案，使用 gcc 编译也许会成功，但是可能产生不可预知的 bug。为了节省您的精力，请在参与开发或自行编译的时候都以官方操作为准。
 
 > 编译方法请参考 [xmake 官方文档](https://xmake.io/#/zh-cn/)，在这里不过多赘述。
 
@@ -12,16 +12,14 @@ CardinalManager 在开发之初就使用 xmake + clang (ucrt) 的方案，使用
 
 ## 配置 msys2
 
-默认在 ucrt64 环境下编译
+默认在 clang64 环境下编译
 
 安装所有的依赖：
 
 ```shell
-pacman -Sy mingw-w64-ucrt-x86_64-libadwaita \
-           mingw-w64-ucrt-x86_64-clang \
-           mingw-w64-ucrt-x86_64-clang-tools-extra \
-           mingw-w64-ucrt-x86_64-toolchain \
-           mingw-w64-ucrt-x86_64-ntldd
+pacman -Sy mingw-w64-clang-x86_64-libadwaita \
+           mingw-w64-clang-x86_64-ntldd \
+           mingw-w64-clang-x86_64-toolchain
 ```
 
 觉得速度慢可以考虑换个源，我自己用的是 tuna 的源，更换的教程也在 tuna 的文档中包含了，自己找一下就行。
@@ -37,7 +35,7 @@ xmake g --network=private
 
 ## 在 msys2 中安装了 xmake 并正确配置了PATH，但是 xmake 在cmd中不工作（报错：16位应用程序...）
 
-我花了一个下午来研究这个问题，一开始以为是软连接错误，后来认为是exe损坏，最后忍无可忍对 ucrt64/bin 下的 xmake.exe 进行了反汇编，结果......
+我花了一个下午来研究这个问题，一开始以为是软连接错误，后来认为是exe损坏，最后忍无可忍对 clang64/bin 下的 xmake.exe 进行了反汇编，结果......
 
 发现这个 xmake.exe 竟然本质上是一个sh脚本（你可以理解成xmake.sh改了个后缀名）
 
