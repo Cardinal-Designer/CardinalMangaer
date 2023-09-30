@@ -5,9 +5,12 @@ add_requires("libadwaita-1",{system = true})
 
 target("CardinalManager")
   set_kind("binary")
-  add_files("src/**.c")
-  add_includedirs("src")
+  add_ldflags("-mwindows")
+
+  add_files("CardinalManager/src/**.c")
+  add_includedirs("CardinalManager/src")
   add_packages("libadwaita-1")
+
 
   after_install(function (target)
     if is_plat("windows") then
