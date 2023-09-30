@@ -1,7 +1,8 @@
 #include <adwaita.h>
+#include <direct.h>
 
 static void print_hello(){
-  g_print("Hello!");
+  //g_print("Hello!");
 }
 
 static void activate(GtkApplication *app) {
@@ -23,6 +24,9 @@ static void activate(GtkApplication *app) {
 }
 
 int main(int argc, char *argv[]) {
+  char buffer[1024];
+  _getcwd(buffer, 1024);
+  //g_print("%s",buffer);
   g_autoptr(AdwApplication) app = NULL;
   app = adw_application_new("org.cardinal.Hello",
   G_APPLICATION_DEFAULT_FLAGS); g_signal_connect(app, "activate",
